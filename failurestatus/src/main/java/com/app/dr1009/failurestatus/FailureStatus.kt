@@ -6,14 +6,16 @@ enum class Status {
     LOADING
 }
 
-data class FailureStatus(
-    val message: String? = "",
-    val throwable: Throwable? = null
-) {
-    companion object {
-        fun create(message: String?) = FailureStatus(message = message ?: "", throwable = null)
-        fun create(t: Throwable?) = FailureStatus(message = "", throwable = t)
-    }
+data class FailureStatus(val message: String? = null, val throwable: Throwable? = null) {
+    constructor(message: String?) : this(message = message, throwable = null)
+    constructor(t: Throwable?) : this(message = null, throwable = t)
+
+    fun createMessage(throwableFunc: (throwable: Throwable?) -> String): String =
+        if (!message.isNullOrEmpty()) {
+            message
+        } else {
+            throwableFunc(throwable)
+        }
 }
 
 data class NetworkState(
@@ -23,7 +25,7 @@ data class NetworkState(
     companion object {
         val LOADED = NetworkState(status = Status.SUCCESS)
         val LOADING = NetworkState(status = Status.LOADING)
-        fun error(message: String?) = NetworkState(status = Status.ERROR, failure = FailureStatus.create(message))
-        fun error(t: Throwable) = NetworkState(status = Status.ERROR, failure = FailureStatus.create(t))
+        fun error(message: String?) = NetworkState(status = Status.ERROR, failure = FailureStatus(message))
+        fun error(t: Throwable) = NetworkState(status = Status.ERROR, failure = FailureStatus(t))
     }
 }
