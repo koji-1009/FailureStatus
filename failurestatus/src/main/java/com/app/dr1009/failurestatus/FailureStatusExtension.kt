@@ -8,16 +8,15 @@ import android.view.View
 fun Activity.networkErroBar(
     anchor: View,
     status: FailureStatus,
-    throwableFunc: (throwable: Throwable?) -> String,
+    message: (throwable: Throwable?) -> String,
     duration: Int = Snackbar.LENGTH_SHORT,
     isShowAction: Boolean = true,
-    actionMessage: String = getString(android.R.string.ok),
-    action: () -> Unit = {}
+    actionMessage: (throwable: Throwable?) -> String = { getString(android.R.string.ok) },
+    action: (throwable: Throwable?) -> Unit = {}
 ) {
-    val message = status.createMessage(throwableFunc)
-    val bar = Snackbar.make(anchor, message, duration)
+    val bar = Snackbar.make(anchor, status.createMessage(message), duration)
     if (isShowAction) {
-        bar.setAction(actionMessage) { action() }
+        bar.setAction(actionMessage(status.throwable)) { action(status.throwable) }
     }
 
     bar.show()
@@ -26,16 +25,15 @@ fun Activity.networkErroBar(
 fun Fragment.networkErrorBar(
     anchor: View,
     status: FailureStatus,
-    throwableFunc: (throwable: Throwable?) -> String,
+    message: (throwable: Throwable?) -> String,
     duration: Int = Snackbar.LENGTH_SHORT,
     isShowAction: Boolean = true,
-    actionMessage: String = getString(android.R.string.ok),
-    action: () -> Unit = {}
+    actionMessage: (throwable: Throwable?) -> String = { getString(android.R.string.ok) },
+    action: (throwable: Throwable?) -> Unit = {}
 ) {
-    val message = status.createMessage(throwableFunc)
-    val bar = Snackbar.make(anchor, message, duration)
+    val bar = Snackbar.make(anchor, status.createMessage(message), duration)
     if (isShowAction) {
-        bar.setAction(actionMessage) { action() }
+        bar.setAction(actionMessage(status.throwable)) { action(status.throwable) }
     }
 
     bar.show()
