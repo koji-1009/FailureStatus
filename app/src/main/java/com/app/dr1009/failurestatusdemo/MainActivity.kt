@@ -26,16 +26,14 @@ class MainActivity : AppCompatActivity() {
             networkErrorBar(
                 anchor = binding.root,
                 status = status,
-                message = this::errorMessage
+                message = { errorMessage(it) }
             )
         })
     }
+}
 
-    private fun errorMessage(throwable: Throwable?): String {
-        when (throwable) {
-            is RuntimeException -> "This is RuntimeException"
-            is IOException -> "Network Error"
-            else -> "Something wrong!"
-        }
-    }
+fun errorMessage(throwable: Throwable?): String = when (throwable) {
+    is RuntimeException -> "This is RuntimeException"
+    is IOException -> "Network Error"
+    else -> "Something wrong!"
 }
