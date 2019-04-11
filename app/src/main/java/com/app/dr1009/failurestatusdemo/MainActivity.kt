@@ -1,10 +1,10 @@
 package com.app.dr1009.failurestatusdemo
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.app.dr1009.failurestatus.networkErrorBar
 import com.app.dr1009.failurestatusdemo.databinding.ActivityMainBinding
 import java.io.IOException
