@@ -18,14 +18,11 @@ data class FailureStatus(val message: String? = null, val throwable: Throwable? 
         }
 }
 
-data class NetworkState(
-    val status: Status,
-    val failure: FailureStatus? = null
-) {
-    companion object {
-        val LOADED = NetworkState(status = Status.SUCCESS)
-        val LOADING = NetworkState(status = Status.LOADING)
-        fun error(message: String?) = NetworkState(status = Status.ERROR, failure = FailureStatus(message))
-        fun error(t: Throwable) = NetworkState(status = Status.ERROR, failure = FailureStatus(t))
+sealed class NetworkState(val status: Status) {
+    object LOADED: NetworkState(Status.SUCCESS)
+    object LOADING: NetworkState(Status.LOADING)
+    data class ERROR(val error: FailureStatus): NetworkState(Status.ERROR) {
+        constructor(throwable: Throwable?) : this(FailureStatus(throwable))
+        constructor(message: String?) : this(FailureStatus(message))
     }
 }
