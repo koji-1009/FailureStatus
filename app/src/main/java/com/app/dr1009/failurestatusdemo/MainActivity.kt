@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.app.dr1009.failurestatus.networkErrorBar
+import com.app.dr1009.failurestatus_extension.networkErrorBar
 import com.app.dr1009.failurestatusdemo.databinding.ActivityMainBinding
 import java.io.IOException
 

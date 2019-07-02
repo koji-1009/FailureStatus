@@ -1,1 +1,1 @@
-include ':app', ':failurestatus'
+include ':app', ':failurestatus', ':failurestatus_extension'

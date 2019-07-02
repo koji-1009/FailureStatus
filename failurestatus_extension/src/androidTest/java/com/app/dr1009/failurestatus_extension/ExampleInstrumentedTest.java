@@ -1,4 +1,4 @@
-package com.app.dr1009.failurestatus;
+package com.app.dr1009.failurestatus_extension;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.app.dr1009.failurestatus.test", appContext.getPackageName());
+        assertEquals("com.app.dr1009.failurestatus_extension.test", appContext.getPackageName());
     }
 }

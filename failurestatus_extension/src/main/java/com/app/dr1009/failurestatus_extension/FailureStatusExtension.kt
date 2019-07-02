@@ -1,8 +1,9 @@
-package com.app.dr1009.failurestatus
+package com.app.dr1009.failurestatus_extension
 
 import android.app.Activity
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.app.dr1009.failurestatus.FailureStatus
 import com.google.android.material.snackbar.Snackbar
 
 fun Activity.networkErrorBar(
